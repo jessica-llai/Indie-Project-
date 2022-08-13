@@ -1,0 +1,70 @@
+
+# Dictionary representing the morse code chart
+MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
+                    'C':'-.-.', 'D':'-..', 'E':'.',
+                    'F':'..-.', 'G':'--.', 'H':'....',
+                    'I':'..', 'J':'.---', 'K':'-.-',
+                    'L':'.-..', 'M':'--', 'N':'-.',
+                    'O':'---', 'P':'.--.', 'Q':'--.-',
+                    'R':'.-.', 'S':'...', 'T':'-',
+                    'U':'..-', 'V':'...-', 'W':'.--',
+                    'X':'-..-', 'Y':'-.--', 'Z':'--..',
+                    '1':'.----', '2':'..---', '3':'...--',
+                    '4':'....-', '5':'.....', '6':'-....',
+                    '7':'--...', '8':'---..', '9':'----.',
+                    '0':'-----', ', ':'--..--', '.':'.-.-.-',
+                    '?':'..--..', '/':'-..-.', '-':'-....-',
+                    '(':'-.--.', ')':'-.--.-'}
+
+REVERSED_DICT={value: key for key,value in MORSE_CODE_DICT.items()}
+print(REVERSED_DICT)
+# split the list
+def text_to_morse():
+
+    my_text = input("text to be encrypted: ")
+    letters = list(my_text)
+
+    # encryption
+    encrypted_letters = []
+    for letter in letters:
+        upper_letter = letter.upper()
+        if upper_letter != ' ':
+            coded_letter = MORSE_CODE_DICT[upper_letter]
+        encrypted_letters.append(coded_letter)
+        encrypted_letters.extend([' '])
+    encrypted_letters=encrypted_letters[:-1]
+
+
+    coded_text = ''
+    for e in encrypted_letters:
+        coded_text += e
+    print(coded_text)
+
+
+def morse_to_text():
+    coded_text = input("Morse code to be decrypted: ")
+    codes = coded_text.split(" ")
+    print(codes)
+
+    decoded_letters =[]
+
+    for code in codes:
+        if code != ' ':
+            e = REVERSED_DICT[code]
+
+        else:
+            e = ' '
+        decoded_letters.append(e)
+    print(decoded_letters)
+
+    text = ''
+    for decode_letter in decoded_letters:
+        text += decode_letter
+        text.lower()
+    print(text)
+
+
+
+
+text_to_morse()
+morse_to_text()
